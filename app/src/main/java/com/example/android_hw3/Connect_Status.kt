@@ -4,6 +4,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 
-object isConnected {
-    var isConnected: String by mutableStateOf("")
+object Connect_Status {
+    var isInternetConnected: String by mutableStateOf("")
 }

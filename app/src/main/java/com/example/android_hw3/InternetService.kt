@@ -9,6 +9,7 @@ import android.net.ConnectivityManager
 import android.net.ConnectivityManager.CONNECTIVITY_ACTION
 import android.os.IBinder
 import android.util.Log
+import org.json.JSONObject
 
 class InternetService: Service() {
     private var receiver: BroadcastReceiver? = null
@@ -24,11 +25,25 @@ class InternetService: Service() {
                 if (networkInfo != null && networkInfo.isConnected) {
                     sendNotification(context, "Status", "Internet Connected.")
                     Log.v("fat", "Internet Connection: true")
-                    isConnected.isConnected = "Internet Connected."
+                    Connect_Status.isInternetConnected = "Internet Connected."
+
+                    val currentDate = getCurrentTimestamp()
+                    val logObject = JSONObject()
+                    logObject.put("timestamp", currentDate)
+                    logObject.put("type", "Internet")
+                    logObject.put("status", Connect_Status.isInternetConnected)
+                    writeToFile(context, logObject)
                 } else {
                     sendNotification(context, "Status", "Internet Disconnected.")
                     Log.v("fat", "Internet Connection: false")
-                    isConnected.isConnected = "Internet Disconnected."
+                    Connect_Status.isInternetConnected = "Internet Disconnected."
+
+                    val currentDate = getCurrentTimestamp()
+                    val logObject = JSONObject()
+                    logObject.put("timestamp", currentDate)
+                    logObject.put("type", "Internet")
+                    logObject.put("status", Connect_Status.isInternetConnected)
+                    writeToFile(context, logObject)
                 }
             }
         }

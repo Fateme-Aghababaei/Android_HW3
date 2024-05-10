@@ -42,6 +42,6 @@ fun MyApp() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(text = isConnected.isConnected, fontWeight = FontWeight.Bold, fontSize = 30.sp)
+        Text(text = Connect_Status.isInternetConnected, fontWeight = FontWeight.Bold, fontSize = 30.sp)
     }
 }
