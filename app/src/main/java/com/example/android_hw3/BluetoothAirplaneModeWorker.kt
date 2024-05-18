@@ -8,7 +8,7 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 
 
-class BluetoothAirplaneModeWorker(private val context: Context, workerParams: WorkerParameters) :
+class BluetoothAirplaneModeWorker(context: Context, workerParams: WorkerParameters) :
     Worker(context, workerParams) {
 
     override fun doWork(): Result {
@@ -33,8 +33,9 @@ class BluetoothAirplaneModeWorker(private val context: Context, workerParams: Wo
     }
 
     private fun logStatus(bluetoothEnabled: Boolean, airplaneModeEnabled: Boolean) {
-        // Log the status or handle it as needed
-        // For example:
-        Log.v("status", "Bluetooth Enabled: $bluetoothEnabled, Airplane Mode Enabled: $airplaneModeEnabled")
+        Log.i(
+            "status",
+            "Bluetooth Enabled: $bluetoothEnabled, Airplane Mode Enabled: $airplaneModeEnabled"
+        )
     }
 }
