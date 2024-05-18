@@ -10,7 +10,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.android_hw3.ui.theme.Android_HW3Theme
+import java.util.concurrent.TimeUnit
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,5 +23,13 @@ class MainActivity : ComponentActivity() {
 
             }
         }
+        setupPeriodicWork()
+    }
+
+    private fun setupPeriodicWork() {
+        val workRequest =
+            PeriodicWorkRequestBuilder<BluetoothAirplaneModeWorker>(15, TimeUnit.MINUTES).build()
+
+        WorkManager.getInstance(this).enqueue(workRequest)
     }
 }
