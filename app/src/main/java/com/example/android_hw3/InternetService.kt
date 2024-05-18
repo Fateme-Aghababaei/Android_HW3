@@ -24,7 +24,7 @@ class InternetService: Service() {
                 val networkInfo = cm.activeNetworkInfo
                 if (networkInfo != null && networkInfo.isConnected) {
                     sendNotification(context, "Status", "Internet Connected.")
-                    Log.v("fat", "Internet Connection: true")
+                    Log.v("status", "Internet Connection: true")
                     Connect_Status.isInternetConnected = "Internet Connected."
 
                     val currentDate = getCurrentTimestamp()
@@ -35,7 +35,7 @@ class InternetService: Service() {
                     writeToFile(context, logObject)
                 } else {
                     sendNotification(context, "Status", "Internet Disconnected.")
-                    Log.v("fat", "Internet Connection: false")
+                    Log.v("status", "Internet Connection: false")
                     Connect_Status.isInternetConnected = "Internet Disconnected."
 
                     val currentDate = getCurrentTimestamp()
