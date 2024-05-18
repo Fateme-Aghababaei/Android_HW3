@@ -16,15 +16,15 @@ fun writeToFile(context: Context, logObject: JSONObject = JSONObject()) {
     val logFile = File(context.filesDir, "logs.json")
 
     logFile.appendText(logArray.toString() )
-    Log.d("fat", "Log entries saved to: ${logFile.absolutePath}")
+    //Log.d("fat", "Log entries saved to: ${logFile.absolutePath}")
 
-    val reader = BufferedReader(FileReader(logFile))
-    var line: String? = reader.readLine()
-    while (line != null) {
-        Log.d("fat", line)
-        line = reader.readLine()
-    }
-    reader.close()
+//    val reader = BufferedReader(FileReader(logFile))
+//    var line: String? = reader.readLine()
+//    while (line != null) {
+//        Log.d("fat", line)
+//        line = reader.readLine()
+//    }
+//    reader.close()
 }
 
 fun getCurrentTimestamp(): String {
