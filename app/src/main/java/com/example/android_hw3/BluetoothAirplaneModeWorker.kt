@@ -6,7 +6,6 @@ import android.provider.Settings
 import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import org.json.JSONObject
 
 
 class BluetoothAirplaneModeWorker(private val context: Context, workerParams: WorkerParameters) :

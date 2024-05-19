@@ -11,7 +11,7 @@ import android.os.IBinder
 import android.util.Log
 
 
-class InternetService: Service() {
+class InternetService : Service() {
     private var receiver: BroadcastReceiver? = null
 
     override fun onCreate() {
@@ -20,7 +20,8 @@ class InternetService: Service() {
         val filter = IntentFilter(CONNECTIVITY_ACTION)
         receiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
-                val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+                val cm =
+                    context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
                 val networkInfo = cm.activeNetworkInfo
                 if (networkInfo != null && networkInfo.isConnected) {
                     sendNotification(context, "Status", "Internet Connected.")
@@ -28,14 +29,20 @@ class InternetService: Service() {
                     Connect_Status.isInternetConnected = "Connected."
 
                     val currentDate = getCurrentTimestamp()
-                    appendLogEntry(context, LogEntry(currentDate, "Internet", Connect_Status.isInternetConnected))
+                    appendLogEntry(
+                        context,
+                        LogEntry(currentDate, "Internet", Connect_Status.isInternetConnected)
+                    )
                 } else {
                     sendNotification(context, "Status", "Internet Disconnected.")
                     Log.v("status", "Internet Connection: false")
                     Connect_Status.isInternetConnected = "Disconnected."
 
                     val currentDate = getCurrentTimestamp()
-                    appendLogEntry(context, LogEntry(currentDate, "Internet", Connect_Status.isInternetConnected))
+                    appendLogEntry(
+                        context,
+                        LogEntry(currentDate, "Internet", Connect_Status.isInternetConnected)
+                    )
                 }
             }
         }

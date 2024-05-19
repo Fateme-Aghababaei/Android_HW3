@@ -1,11 +1,10 @@
 package com.example.android_hw3
 
 import android.content.Context
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
-import java.io.IOException
 
 fun appendLogEntry(context: Context, logEntry: LogEntry) {
     val file = File(context.filesDir, "stats.json")
