@@ -17,17 +17,8 @@ class BluetoothAirplaneModeWorker(private val context: Context, workerParams: Wo
         val isAirplaneModeEnabled = if (isAirplaneModeEnabled()) "On" else "Off"
         logStatus(isBluetoothEnabled, isAirplaneModeEnabled)
 
-        val logObjectBluetooth = JSONObject()
-        logObjectBluetooth.put("timestamp", getCurrentTimestamp())
-        logObjectBluetooth.put("type", "Bluetooth")
-        logObjectBluetooth.put("status", isBluetoothEnabled)
-        writeToFile(context, logObjectBluetooth)
-
-        val logObjectAirplane = JSONObject()
-        logObjectAirplane.put("timestamp", getCurrentTimestamp())
-        logObjectAirplane.put("type", "Airplane")
-        logObjectAirplane.put("status", isAirplaneModeEnabled)
-        writeToFile(context, logObjectAirplane)
+        appendLogEntry(context, LogEntry(getCurrentTimestamp(), "Bluetooth", isBluetoothEnabled))
+        appendLogEntry(context, LogEntry(getCurrentTimestamp(), "Airplane", isAirplaneModeEnabled))
 
         return Result.success()
     }

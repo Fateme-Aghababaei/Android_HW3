@@ -4,9 +4,7 @@ import android.content.Context
 import android.util.Log
 import org.json.JSONArray
 import org.json.JSONObject
-import java.io.BufferedReader
 import java.io.File
-import java.io.FileReader
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -15,7 +13,7 @@ fun writeToFile(context: Context, logObject: JSONObject = JSONObject()) {
     val logArray = JSONArray().put(logObject)
     val logFile = File(context.filesDir, "logs.json")
 
-    logFile.appendText(logArray.toString() )
+    logFile.appendText(logArray.toString())
     Log.v("status", "Log entries saved to: ${logFile.absolutePath}")
 }
 
