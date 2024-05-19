@@ -13,22 +13,20 @@ class BluetoothAirplaneModeWorker(private val context: Context, workerParams: Wo
     Worker(context, workerParams) {
 
     override fun doWork(): Result {
-        val isBluetoothEnabled = isBluetoothEnabled()
-        Connect_Status.isBluetoothOn = if (isBluetoothEnabled) "On" else "Off"
-        val isAirplaneModeEnabled = isAirplaneModeEnabled()
-        Connect_Status.isAirplaneOn = if (isBluetoothEnabled) "On" else "Off"
+        val isBluetoothEnabled = if (isBluetoothEnabled()) "On" else "Off"
+        val isAirplaneModeEnabled = if (isAirplaneModeEnabled()) "On" else "Off"
         logStatus(isBluetoothEnabled, isAirplaneModeEnabled)
 
         val logObjectBluetooth = JSONObject()
         logObjectBluetooth.put("timestamp", getCurrentTimestamp())
         logObjectBluetooth.put("type", "Bluetooth")
-        logObjectBluetooth.put("status", Connect_Status.isBluetoothOn)
+        logObjectBluetooth.put("status", isBluetoothEnabled)
         writeToFile(context, logObjectBluetooth)
 
         val logObjectAirplane = JSONObject()
         logObjectAirplane.put("timestamp", getCurrentTimestamp())
-        logObjectAirplane.put("type", "Bluetooth")
-        logObjectAirplane.put("status", Connect_Status.isBluetoothOn)
+        logObjectAirplane.put("type", "Airplane")
+        logObjectAirplane.put("status", isAirplaneModeEnabled)
         writeToFile(context, logObjectAirplane)
 
         return Result.success()
@@ -46,10 +44,10 @@ class BluetoothAirplaneModeWorker(private val context: Context, workerParams: Wo
         ) != 0
     }
 
-    private fun logStatus(bluetoothEnabled: Boolean, airplaneModeEnabled: Boolean) {
+    private fun logStatus(bluetoothEnabled: String, airplaneModeEnabled: String) {
         Log.i(
             "status",
-            "Bluetooth Enabled: $bluetoothEnabled, Airplane Mode Enabled: $airplaneModeEnabled"
+            "Bluetooth: $bluetoothEnabled, Airplane Mode: $airplaneModeEnabled"
         )
     }
 }
