@@ -25,7 +25,7 @@ class InternetService: Service() {
                 if (networkInfo != null && networkInfo.isConnected) {
                     sendNotification(context, "Status", "Internet Connected.")
                     Log.v("status", "Internet Connection: true")
-                    Connect_Status.isInternetConnected = "Internet Connected."
+                    Connect_Status.isInternetConnected = "Connected."
 
                     val currentDate = getCurrentTimestamp()
                     val logObject = JSONObject()
@@ -36,7 +36,7 @@ class InternetService: Service() {
                 } else {
                     sendNotification(context, "Status", "Internet Disconnected.")
                     Log.v("status", "Internet Connection: false")
-                    Connect_Status.isInternetConnected = "Internet Disconnected."
+                    Connect_Status.isInternetConnected = "Disconnected."
 
                     val currentDate = getCurrentTimestamp()
                     val logObject = JSONObject()
